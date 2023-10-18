@@ -32,8 +32,10 @@ function writeToFile(fileName, answers) {
     });
 } 
 
-const questions = [
-    {
+function promptUser() {
+    inquirer
+      .prompt([
+      {
         type: 'checkbox',
         message: 'Pick a shape',
         choices: ['Triangle', 'Square', 'Circle'],
@@ -53,19 +55,29 @@ const questions = [
         type: 'input', 
         message: 'Enter the color or hexidecimal number for logo color',
         name: 'logoColor',
-    },
-];
-
-function writeToFile(fileName, data) {
-    return fs.writeFileSync(path.join(process.cwd(), fileName), data)
+    },  
+])
+.then((answers) => {
+    if (answers.text.length > 3) {
+        console.log("Please enter no more than 3 characters");
+        promptUser();
+    }  else {
+        writeToFile("logo.svg", answers);
+    }
+});
 }
+        
 
-function init() {
+// function writeToFile(fileName, data) {
+//     return fs.writeFileSync(path.join(process.cwd(), fileName), data)
+// }
 
-    inquirer.createPromptModule(questions).then((responses) => {
-        console.log("Making the SVG Logo");
-        writeToFile('samplelogo.svg', generateLogo({...response}))
-    })
-}
+// function init() {
+
+//     inquirer.createPromptModule(questions).then((responses) => {
+//         console.log("Making the SVG Logo");
+//         writeToFile('samplelogo.svg', generateLogo({...response}))
+//     })
+// }
 
 init();
