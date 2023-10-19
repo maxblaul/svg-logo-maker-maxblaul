@@ -1,30 +1,24 @@
 const inquirer = require("inquirer");
-
+// requiring inquirer and fs
 const fs = require("fs");
 
 const { Triangle, Square, Circle } = require("./lib/shapes");
+// declaring constants shapes
 
+// function if statement that loops over what shape is picked
 function writeToFile(fileName, answers) {
-    
-    let svgString = "";
-
-    svgString = '<svg version="1.1" width="300" height="200" xmlns="http://www.w3.org/2000/svg">';
+    let svgString = '<svg version="1.1" width="300" height="200" xmlns="http://www.w3.org/2000/svg">';
     svgString += "<g>";
-    svgString += `${answers.shape}`;
 
-    let shapeChoice;
     if (answers.shape === "Triangle") {
-        shapeChoice = new Triangle();
         svgString += `<polygon points="150, 18 244, 182 56, 182" fill="${answers.logoColor}"/>`;
-    }   else if (answers.shape === "Square") {
-        shapeChoice = new Square();
-        svgString += `<rect x="73" y="40" width="160" fill="${answers.logoColor}"/>`;
-    }   else {
-        shapeChoice = new Circle();
-        svgString += `<circle cx="150" cy="115" r="80" fill="${answers.logoColor}">`;
+    } else if (answers.shape === "Square") {
+        svgString += `<rect x="73" y="40" width="160" height="160" fill="${answers.logoColor}"/>`;
+    } else {
+        svgString += `<circle cx="150" cy="115" r="80" fill="${answers.logoColor}"/>`;
     }
 
-    svgString += `<text x="150" y="150" text-anchor="middle" font-size="40" fill="${answers.textColor}">${answers.logoName}</text>`;
+    svgString += `<text x="150" y="170" text-anchor="middle" font-size="50" fill="${answers.textColor}">${answers.logoName}</text>`;
 
     svgString += "</g>";
     svgString += "</svg>";
@@ -32,13 +26,15 @@ function writeToFile(fileName, answers) {
     fs.writeFile(fileName, svgString, (err) => {
         err ? console.log(err) : console.log("Generated logo.svg");
     });
-} 
+}
+// writes to new file
 
+// function that asks the user questions about the logo
 function promptUser() {
     inquirer
       .prompt([
       {
-        type: 'checkbox',
+        type: 'list',
         message: 'Pick a shape',
         choices: ['Triangle', 'Square', 'Circle'],
         name: 'shape',
@@ -68,5 +64,7 @@ function promptUser() {
     }
  });
 }
-        
+        // If someone tries more than 3 chars
 promptUser();
+
+// promt initialization
