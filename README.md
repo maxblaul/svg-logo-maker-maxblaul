@@ -13,6 +13,7 @@ module 10 assignment
   * [Questions](#questions)
   * [Repo Link](#repolink)
   * [Screen Recording link](#screenrecording)
+  * [Resources](#resources)
 
 ## Description 
 
@@ -51,3 +52,10 @@ https://github.com/maxblaul/svg-logo-maker-maxblaul
 
 https://watch.screencastify.com/v/B3BTMO0my6G9Ci8Tyud7
 
+## Resources
+
+https://htmlcolorcodes.com/
+https://developer.mozilla.org/en-US/docs/Web/SVG/Tutorial/Textshttps://developer.mozilla.org/en-US/docs/Web/SVG/Tutorial/Basic_Shapes
+
+For finding syntax errors I used chatgpt
+https://chat.openai.com/
